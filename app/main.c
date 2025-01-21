@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include "extra_file.h"
-
+#include <stdbool.h>
 
 
 int main(int argv, char** args)
@@ -13,7 +13,7 @@ int main(int argv, char** args)
     SDL_Window *window = SDL_CreateWindow("Hello SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
-    short isRunning = 1;
+    bool isRunning = 1;
     SDL_Event event;
 
     while (isRunning)
