@@ -1,0 +1,7 @@
+[
+    {
+      "directory": "/path/to/your/project/",
+      "file": "app/main.c",
+      "command": "gcc -g app/main.c app/extra_file.c -o build/game.exe -Llib -lmingw32 -lSDL2main -lSDL2"
+    }
+  ]
