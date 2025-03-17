@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-
 int main(int argv, char** args)
 {
     (void)argv;
@@ -39,9 +38,32 @@ int main(int argv, char** args)
         return EXIT_FAILURE;
     }
 
+    /////////////////////////
+    // Create SDL Renderer //
+    /////////////////////////
+    SDL_Renderer *renderer = SDL_CreateRenderer(
+        window,
+        -1,
+        SDL_RENDERER_ACCELERATED
+    );
+
+    if(!renderer)
+    {
+        SDL_Log("Error on creating render: %s",SDL_GetError());
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return EXIT_FAILURE;
+    }
+
     ///////////////
     // Main Loop //
     ///////////////
+
+    SDL_RenderClear(renderer);
+
+    SDL_Texture *texture = NULL;
+
+
     bool quit = false;
 
     while (!quit)
@@ -50,19 +72,34 @@ int main(int argv, char** args)
 
         while (SDL_PollEvent(&event))
         {
-            if (event.type == SDL_QUIT)
+            /////////////////////////////////////
+            // Polling Events are handled here //
+            /////////////////////////////////////
+            switch (event.type)
             {
+            case SDL_QUIT:
                 quit = true;
+                break;
+
+            case SDL_MOUSEBUTTONDOWN:
+                printf("Mouse buttone has been pressed\n");
+
+            default:
+                break;
             }
-            
+
+            /////////////////////////////
+            // Game State Updated Here //
+            /////////////////////////////
+
         }
-        
+
     }
 
     //////////////////////
     // Cleanup and Exit //
     //////////////////////
     SDL_DestroyWindow(window);
-    SDL_Quit(); 
+    SDL_Quit();
     return EXIT_SUCCESS;
 }
