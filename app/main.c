@@ -61,9 +61,6 @@ int main(int argv, char** args)
 
     SDL_RenderClear(renderer);
 
-    SDL_Texture *texture = NULL;
-
-
     bool quit = false;
 
     while (!quit)
